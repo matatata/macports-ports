@@ -1,0 +1,22 @@
+--- configure.orig	2025-08-06 19:05:36
++++ configure	2025-08-06 19:07:16
+@@ -20688,13 +20688,13 @@
+   return 0;
+ }
+ _ACEOF
+-if ac_fn_c_try_compile "$LINENO"
+-then :
++#if ac_fn_c_try_compile "$LINENO"
++#then :
+   ac_cv_mabi_ms=yes
+-else case e in #(
+-  e) ac_cv_mabi_ms=no ;;
+-esac
+-fi
++#else case e in #(
++#  e) ac_cv_mabi_ms=no ;;
++#esac
++#fi
+ rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+                 CFLAGS=$saved_CFLAGS ;;
+ esac

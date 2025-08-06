@@ -79,6 +79,11 @@ patchfiles-append \
 patchfiles-append \
     MR7328.diff
 
+# Hack to ignore the outcome of the -mabi=ms check so that .a archive files in lib/x86_64-unix/ are created.
+patchfiles-append \
+   configure-mabi-hack.diff
+
+
 # wine requires the program specified in INSTALL to create intermediate
 # directories; /usr/bin/install doesn't.
 # http://bugs.winehq.org/show_bug.cgi?id=35310
@@ -87,6 +92,10 @@ configure.install \
 
 configure.args.x86_64 \
     --enable-win64
+
+
+# use clang-16 so that we can trick it to ignore the -msabi=ms check
+configure.compiler  macports-clang-16
 
 configure.args \
     --disable-tests \
@@ -129,6 +138,8 @@ configure.env.x86_64-append ac_cv_lib_soname_vulkan=
 
 # We need to tell the linker to add MacPorts to the rpath stack.
 configure.ldflags-append    -Wl,-rpath,${compiler.library_path}
+# Need to ignore the unused argument -msabi
+configure.cflags-append    -Qunused-arguments
 
 # wine requires clang >= 3.8
 # FSF GCC cannot compile code using Apple's "blocks" language extensions
