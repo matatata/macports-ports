@@ -136,6 +136,11 @@ compiler.blacklist-append   {*gcc*} {clang < 800} {macports-clang-3.*}
 
 # Makes destroot take significantly longer
 variant dev description "Install ${subport} development environment" {
+    # Matatata: bring back lib/x86_64-unix/*.a archive files for use with winegcc/g++
+    # https://trac.macports.org/ticket/72792 
+    patchfiles-append \
+        dev_variant_winelib_fix.diff
+
     build.target            all
     destroot.target-append  install-dev
 }

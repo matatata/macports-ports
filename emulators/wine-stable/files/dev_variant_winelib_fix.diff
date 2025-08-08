@@ -1,0 +1,11 @@
+--- configure	2025-08-08 12:29:53
++++ configure.good	2025-08-08 12:29:47
+@@ -20804,7 +20804,7 @@
+   MSVCRTFLAGS="$MSVCRTFLAGS -mabi=ms"
+ else case e in #(
+   e) test -n "$PE_ARCHS" || as_fn_error $? "The compiler doesn't support -mabi=ms. Use gcc instead of clang, or install mingw-w64." "$LINENO" 5
+-                      DLLEXT="" ;;
++     test -n "$PE_ARCHS" || DLLEXT="" ;;
+ esac
+ fi ;;
+       esac ;;

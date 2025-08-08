@@ -165,6 +165,11 @@ subport wine-staging {
 
 # Makes destroot take significantly longer
 variant dev description "Install ${subport} development environment" {
+    # Matatata: bring back lib/x86_64-unix/*.a archive files for use with winegcc/g++
+    # https://trac.macports.org/ticket/72792 
+    patchfiles-append \
+        dev_variant_winelib_fix.diff
+
     configure.optflags-prepend -g
     build.target            all
     destroot.target-append  install-dev
